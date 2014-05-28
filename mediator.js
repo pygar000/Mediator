@@ -105,6 +105,10 @@
 		if (urlo.host == 'snd.sc') {
 			return ReplaceSoundcloud(url, elem, $elem);
 		}
+		if (urlo.host == 'xvideos.com' || urlo.host == 'www.xvideos.com'){
+			var match = urlo.path.match(/video(\d+)/);
+			if (match) return ReplaceXvideos(match[1], elem, $elem); 
+		}
 
 		if (urlo.host.match(/^bandcamp\.[^\.]+\.com$/i) || urlo.host.match(/^[^\.]+\.bandcamp\.com$/i)) {
 			return ReplaceBandcamp(url, elem, $elem);
@@ -121,6 +125,14 @@
 		$elem.wrap('<center class="Mediator'+ type +'"/>');
 		return;
 	}
+
+	function ReplaceXvideos (nums, elem, $elem){
+		var newel=$('<iframe>');
+		newel.prop('height',height);
+		newel.prop('src', '//xvideos.com/embedframe/'+ nums)
+		CommonSetting(newel, $elem, 'Xvideo');
+		$elem.replaceWith(newel);
+		}
 
 	function ReplaceImage (url, elem, $elem) {
 		var newel = $('<img>');
