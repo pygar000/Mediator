@@ -106,7 +106,7 @@
 			return ReplaceSoundcloud(url, elem, $elem);
 		}
 		if (urlo.host == 'xvideos.com' || urlo.host == 'www.xvideos.com'){
-			var match = urlo.path.match(/video(\d+)/);
+			var match = urlo.path.match(/video([7]\d+)/);
 			if (match) return ReplaceXvideos(match[1], elem, $elem); 
 		}
 
@@ -129,7 +129,7 @@
 	function ReplaceXvideos (nums, elem, $elem){
 		var newel=$('<iframe>');
 		newel.prop('height',height);
-		newel.prop('src', '//xvideos.com/embedframe/'+ nums)
+		newel.prop('src', '//xvideos.com/embedframe/'+ nums);
 		CommonSetting(newel, $elem, 'Xvideo');
 		$elem.replaceWith(newel);
 		}
@@ -156,7 +156,7 @@
 	function ReplaceImgurGal (hash, elem, $elem) {
 		var newel = $('<iframe>');
 		newel.prop('height',height);
-		newel.prop('src', '//imgur.com/a/'+ hash+ '/embed')
+		newel.prop('src', '//imgur.com/a/'+ hash+ '/embed'); 
 		CommonSetting(newel, $elem, 'imgurGal');
 		$elem.replaceWith(newel);
 	}
