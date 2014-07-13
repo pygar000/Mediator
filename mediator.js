@@ -113,6 +113,11 @@
 		if (urlo.host.match(/^bandcamp\.[^\.]+\.com$/i) || urlo.host.match(/^[^\.]+\.bandcamp\.com$/i)) {
 			return ReplaceBandcamp(url, elem, $elem);
 		}
+		
+		if(urlo.host == 'instagram.com'){	
+			var match = urlo.path.match(/p\/[\w]{10}$/);
+			if (match) return ReplaceInstagram(match[0], elem, $elem); 
+		}
 	}
 
 	function CommonSetting (newel, $elem, type) {
@@ -125,6 +130,14 @@
 		$elem.wrap('<center class="Mediator'+ type +'"/>');
 		return;
 	}
+
+	function ReplaceInstagram (str, elem, $elem){
+		var newel=$('<iframe>');
+		newel.prop('height','715');
+		newel.prop('src', '//instagram.com/'+str+'/embed/');
+		CommonSetting(newel, $elem, 'Instagram');
+		$elem.replaceWith(newel);
+		}
 
 	function ReplaceXvideos (nums, elem, $elem){
 		var newel=$('<iframe>');
