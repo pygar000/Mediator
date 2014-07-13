@@ -106,7 +106,7 @@
 			return ReplaceSoundcloud(url, elem, $elem);
 		}
 		if (urlo.host == 'xvideos.com' || urlo.host == 'www.xvideos.com'){
-			var match = urlo.path.match(/video([7]\d+)/);
+			var match = urlo.path.match(/video([\d+]{7})$/);
 			if (match) return ReplaceXvideos(match[1], elem, $elem); 
 		}
 
